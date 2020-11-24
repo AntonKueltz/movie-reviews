@@ -1,8 +1,11 @@
-bin/
+.vscode/
+bin
 
 # js
 node_modules/
 
 # python
+__pycache__/
 site-packages/
+venv/
 *.py[co]
