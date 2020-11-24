@@ -1,0 +1,8 @@
+bin/
+
+# js
+node_modules/
+
+# python
+site-packages/
+*.py[co]
