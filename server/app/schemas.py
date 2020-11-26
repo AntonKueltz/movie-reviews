@@ -1,5 +1,5 @@
 from enum import Enum
-from typing import Dict, Set
+from typing import Dict, List
 
 from pydantic import AnyHttpUrl, BaseModel
 
@@ -18,18 +18,16 @@ class StreamingService(str, Enum):
 
 
 class Movie(BaseModel):
-    id: int
     name: str
     year: int
     links: Dict[str, AnyHttpUrl]
-    places_to_watch: Set[StreamingService]
+    places_to_watch: List[StreamingService]
 
 
 ##################################
 #            REVIEWS             #
 ##################################
 class Review(BaseModel):
-    id: int
     movie: Movie
     title: str
     body: str
@@ -38,8 +36,7 @@ class Review(BaseModel):
 
 class ReviewIndex(BaseModel):
     # omit bodies and movie metadata here since this is an overview
-    id: int
-    movie_title: str
+    movie_name: str
     movie_year: int
     review_title: str
     rating: float
