@@ -1,2 +1,2 @@
 #!/usr/bin/env sh
-poetry run uvicorn app:app --reload
+poetry run uvicorn app.main:app --reload
