@@ -10,7 +10,7 @@ import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: "#e7e7e7",
+        backgroundColor: theme.palette.primary.light,
         display: "flex",
         minWidth: 275,
         maxWidth: 450,
@@ -50,7 +50,7 @@ export default function ReviewCard(props) {
                 className={classes.cover}
                 component="img"
                 src={coverImg}
-                title="Placeholder"
+                title={`${props.movie_name} Poster`}
             />
             <CardContent>
                 <Typography component="h5" variant="h5">
