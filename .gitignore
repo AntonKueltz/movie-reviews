@@ -4,6 +4,7 @@ bin
 
 # js
 node_modules/
+.eslintcache
 
 # python
 __pycache__/

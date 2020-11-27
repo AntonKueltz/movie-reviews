@@ -1,7 +1,7 @@
 from typing import List
 
-from .crud import get_review_by_movie_name, get_review_index, new_review
-from .schemas import Review, ReviewIndex
+from .crud import get_review_by_movie_name, get_review_index, new_review, update_movie_by_movie_name
+from .schemas import Review, ReviewIndex, ReviewUpdate
 
 from fastapi import APIRouter
 
@@ -25,6 +25,12 @@ def create_review(review_data: Review):
 
 
 @review_router.get("/{movie_name}", response_model=Review)
-def review(movie_name: str):
+def get_review(movie_name: str):
     """Get a movie review by movie name."""
     return get_review_by_movie_name(movie_name)
+
+
+@review_router.patch("/{movie_name}", response_model=Review)
+def update_review(movie_name: str, review_data: ReviewUpdate):
+    """Update the a movie review"""
+    return update_movie_by_movie_name(movie_name, review_data)
