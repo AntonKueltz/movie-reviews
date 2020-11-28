@@ -48,4 +48,4 @@ class ReviewIndex(BaseModel):
 class ReviewUpdate(BaseModel):
     title: Optional[str] = None
     body: Optional[str] = None
-    rating: Optional[str] = None
+    rating: Optional[float] = None

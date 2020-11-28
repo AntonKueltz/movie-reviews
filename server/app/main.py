@@ -1,14 +1,10 @@
-from .routes import review_router
+from .config import origins
+from .routes import auth_router, review_router
 
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
-
-origins = [
-    "http://localhost",
-    "http://localhost:3000",
-]
 
 app.add_middleware(
     CORSMiddleware,
@@ -22,6 +18,13 @@ app.include_router(
     review_router,
     prefix="/reviews",
     tags=["Reviews"],
+    responses={404: {"description": "Not Found"}},
+)
+
+app.include_router(
+    auth_router,
+    prefix="/auth",
+    tags=["Auth"],
     responses={404: {"description": "Not Found"}},
 )
 
