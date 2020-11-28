@@ -124,8 +124,8 @@ python-versions = "*"
 
 [metadata]
 lock-version = "1.1"
-python-versions = "^3.9"
-content-hash = "351681a25ca040f23d66cc34b899b0a376cadfdb1ee8fdbdbc581f4c57242cdf"
+python-versions = "^3.8"
+content-hash = "e84f193496791b3068fd82513a409f61dc0e5ab6164634ac0dbf45fad3b9c30d"
 
 [metadata.files]
 click = [
