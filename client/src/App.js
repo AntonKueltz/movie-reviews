@@ -1,36 +1,79 @@
+// React
+import { useState } from 'react';
+
 // Material UI
 import AppBar from '@material-ui/core/AppBar';
-import Button from '@material-ui/core/Button';
+import Modal from '@material-ui/core/Modal';
 import Toolbar from '@material-ui/core/Toolbar';
 import Typography from '@material-ui/core/Typography';
 import { makeStyles } from '@material-ui/core/styles';
 
+import { AuthContext } from './auth';
+import LoginForm from './components/LoginForm';
+import NavOptions from './components/NavOptions';
 import ReviewIndex from './components/ReviewIndex';
 
-const useStyles = makeStyles({
+const useStyles = makeStyles((theme) => ({
   title: {
-      flexGrow: 1,
-      textAlign: "center",
+    flexGrow: 1,
+    textAlign: "center",
   },
-});
+  modal: {
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: 300,
+    height: 200,
+    backgroundColor: theme.palette.primary.main,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+}));
 
 function App() {
   const classes = useStyles();
   document.body.style.margin = "0";
   document.body.style.backgroundColor = "#e0e0e0";
 
-  return (
-    <div className={classes.root}>      
-      <AppBar position="static">
-        <Toolbar>
-          <Typography variant="h6" component="h6" className={classes.title}>
-            Shitty Movie Reviews
-          </Typography>
-          <Button color="inherit">Login</Button>
-        </Toolbar>
-      </AppBar>
+  // state management for login modal
+  const [open, setOpen] = useState(false);
+  function openLoginModal() { setOpen(true); }
+  function closeLoginModal() { setOpen(false); }
 
-      <ReviewIndex className={classes.root} />
+  // auth management
+  const currentToken = localStorage.getItem("token");
+  const [authToken, setAuthToken] = useState(currentToken);
+
+  function setToken(token) {
+    setAuthToken(token);
+    localStorage.setItem("token", token);
+  }
+
+  return (
+    <div className={classes.root}>
+      <AuthContext.Provider value={{ token: authToken, setToken }}>
+        <AppBar position="static">
+          <Toolbar>
+            <Typography variant="h6" component="h6" className={classes.title}>
+              Shitty Movie Reviews
+            </Typography>
+
+            <NavOptions openLoginModal={openLoginModal} />
+      
+            </Toolbar>
+        </AppBar>
+
+        <Modal
+          className={classes.modal}
+          onClose={closeLoginModal}
+          open={open}
+        >
+          <LoginForm close={closeLoginModal} />
+        </Modal>
+
+        <ReviewIndex className={classes.root} />
+      </AuthContext.Provider>
     </div>
   );
 }

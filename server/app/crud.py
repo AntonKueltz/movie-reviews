@@ -5,6 +5,7 @@ from .database import db
 from .schemas import Review, ReviewIndex, ReviewUpdate
 
 from argon2 import PasswordHasher
+from argon2.exceptions import Argon2Error
 from itsdangerous import BadTimeSignature, TimestampSigner
 
 hasher = PasswordHasher()
@@ -55,7 +56,10 @@ def check_login(username: str, password: str) -> bool:
         return False
 
     # wrong / bad password provided
-    if not hasher.verify(user_data.get("password_hash", ""), password):
+    try:
+        if not hasher.verify(user_data.get("password_hash", ""), password):
+            return False
+    except Argon2Error:
         return False
 
     return True

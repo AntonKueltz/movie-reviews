@@ -6,6 +6,7 @@ import Container from '@material-ui/core/Container';
 import { makeStyles } from '@material-ui/core/styles';
 
 import ReviewCard from './ReviewCard'
+import { config } from '../config';
 
 const useStyles = makeStyles({
     root: {
@@ -24,7 +25,7 @@ export default function ReviewIndex(props) {
     const classes = useStyles();
 
     useEffect(() => {
-        fetch("http://localhost:8000/reviews/")
+        fetch(`${config.API_URL}/reviews/`)
             .then(res => res.json())
             .then((result) => {
                 setIsLoaded(true);
