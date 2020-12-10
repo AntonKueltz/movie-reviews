@@ -12,19 +12,30 @@ import { AuthContext } from './auth';
 import LoginForm from './components/LoginForm';
 import NavOptions from './components/NavOptions';
 import ReviewIndex from './components/ReviewIndex';
+import NewReviewForm from './components/NewReviewForm';
 
 const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
     textAlign: "center",
   },
-  modal: {
+  loginModal: {
     display: "block",
     marginLeft: "auto",
     marginRight: "auto",
     width: 300,
     height: 200,
     backgroundColor: theme.palette.primary.main,
+    border: '2px solid #000',
+    boxShadow: theme.shadows[5],
+    padding: theme.spacing(2, 4, 3),
+  },
+  newReviewModal: {
+    display: "block",
+    marginLeft: "auto",
+    marginRight: "auto",
+    width: "80%",
+    backgroundColor: theme.palette.primary.light,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -37,9 +48,14 @@ function App() {
   document.body.style.backgroundColor = "#e0e0e0";
 
   // state management for login modal
-  const [open, setOpen] = useState(false);
-  function openLoginModal() { setOpen(true); }
-  function closeLoginModal() { setOpen(false); }
+  const [isLoginModalOpen, setLoginModalOpen] = useState(false);
+  function openLoginModal() { setLoginModalOpen(true); }
+  function closeLoginModal() { setLoginModalOpen(false); }
+
+  // state management for new review modal
+  const [isNewReviewModalOpen, setNewReviewModalOpen] = useState(false);
+  function openNewReviewModal() { setNewReviewModalOpen(true); }
+  function closeNewReviewModal() { setNewReviewModalOpen(false); }
 
   // auth management
   const currentToken = localStorage.getItem("token");
@@ -59,17 +75,25 @@ function App() {
               Shitty Movie Reviews
             </Typography>
 
-            <NavOptions openLoginModal={openLoginModal} />
+            <NavOptions openLoginModal={openLoginModal} openNewReviewModal={openNewReviewModal} />
       
             </Toolbar>
         </AppBar>
 
         <Modal
-          className={classes.modal}
+          className={classes.loginModal}
           onClose={closeLoginModal}
-          open={open}
+          open={isLoginModalOpen && !isNewReviewModalOpen}
         >
           <LoginForm close={closeLoginModal} />
+        </Modal>
+
+        <Modal
+          className={classes.newReviewModal}
+          onClose={closeNewReviewModal}
+          open={isNewReviewModalOpen && !isLoginModalOpen}
+        >
+          <NewReviewForm close={closeNewReviewModal} />
         </Modal>
 
         <ReviewIndex className={classes.root} />

@@ -64,7 +64,6 @@ export default function LoginForm(props) {
                     value={username}
                     onChange={event => setUsername(event.target.value)}
                     label="Username"
-                    required
                     fullWidth
                     margin="normal"
                 /> 
@@ -74,7 +73,6 @@ export default function LoginForm(props) {
                     label="Password"
                     type="password"
                     autoComplete="current-password"
-                    required
                     fullWidth
                     margin="normal"
                 />

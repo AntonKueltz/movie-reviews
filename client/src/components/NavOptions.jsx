@@ -40,6 +40,7 @@ export default function NavOptions(props) {
             open={Boolean(anchorEl)}
             onClose={handleClose}
         >
+            <MenuItem onClick={props.openNewReviewModal}>Add Review</MenuItem>
             <MenuItem onClick={logout}>Logout</MenuItem>
         </Menu>
     </Fragment>
