@@ -10,7 +10,7 @@ import StarHalfIcon from '@material-ui/icons/StarHalf';
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        backgroundColor: theme.palette.primary.light,
+        backgroundColor: theme.palette.secondary.main,
         display: "flex",
         minWidth: 275,
         maxWidth: 450,

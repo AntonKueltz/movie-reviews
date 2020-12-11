@@ -35,7 +35,8 @@ const useStyles = makeStyles((theme) => ({
     marginLeft: "auto",
     marginRight: "auto",
     width: "80%",
-    backgroundColor: theme.palette.primary.light,
+    color: theme.palette.secondary.dark,
+    backgroundColor: theme.palette.primary.main,
     border: '2px solid #000',
     boxShadow: theme.shadows[5],
     padding: theme.spacing(2, 4, 3),
@@ -45,7 +46,7 @@ const useStyles = makeStyles((theme) => ({
 function App() {
   const classes = useStyles();
   document.body.style.margin = "0";
-  document.body.style.backgroundColor = "#e0e0e0";
+  document.body.style.backgroundColor = "#222222";
 
   // state management for login modal
   const [isLoginModalOpen, setLoginModalOpen] = useState(false);
@@ -77,7 +78,7 @@ function App() {
 
             <NavOptions openLoginModal={openLoginModal} openNewReviewModal={openNewReviewModal} />
       
-            </Toolbar>
+          </Toolbar>
         </AppBar>
 
         <Modal
