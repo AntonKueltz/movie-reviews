@@ -5,6 +5,7 @@ bin
 ##### js #####
 node_modules/
 .eslintcache
+build/
 
 # dependencies
 /.pnp
