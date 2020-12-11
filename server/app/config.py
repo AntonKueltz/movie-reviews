@@ -3,7 +3,7 @@ from os import environ
 
 if environ.get("MOVIE_SERVER_ENV") == "prod":
     origins = [
-        "https://antonkueltz.com",
+        "https://total-shit.show",
     ]
     # do not add a default value to get() as this should fail if there is no env defined key
     app_key = unhexlify(environ.get("MOVIE_SERVER_SECRET_KEY"))

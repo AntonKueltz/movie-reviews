@@ -1,5 +1,5 @@
 const prod = {
-    API_URL: "https://api.antonkueltz.com",
+    API_URL: "https://api.total-shit.show",
 }
 
 const dev = {
